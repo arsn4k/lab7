@@ -37,7 +37,7 @@ async function loadServers() {
   tbody.replaceChildren();
   const servers = await request("/api/servers");
   for (const s of servers) {
-    const metrics = await request(`/api/servers/${s.id}/metrics?take=1`);
+    const metrics = await request(`/api/servers/${s.server_id}/metrics?take=1`);
     const last = metrics[0];
     const tr = document.createElement("tr");
     tr.append(
@@ -55,7 +55,7 @@ function statusCell(server) {
   const td = document.createElement("td");
   const select = document.createElement("select");
   STATUSES.forEach((name, value) => select.add(new Option(name, value, false, value === server.status)));
-  select.onchange = () => run(() => request(`/api/servers/${server.id}`, {
+  select.onchange = () => run(() => request(`/api/servers/${server.server_id}`, {
     method: "PUT",
     body: JSON.stringify({
       hostname: server.hostname, ip_address: server.ip_address,
@@ -72,7 +72,7 @@ function actionsCell(server) {
   const metric = document.createElement("button");
   metric.textContent = "+ метрика";
   metric.className = "link";
-  metric.onclick = () => run(() => request(`/api/servers/${server.id}/metrics`, {
+  metric.onclick = () => run(() => request(`/api/servers/${server.server_id}/metrics`, {
     method: "POST",
     body: JSON.stringify({
       cpu_usage: +(Math.random() * 100).toFixed(1),
@@ -84,7 +84,7 @@ function actionsCell(server) {
   remove.textContent = "видалити";
   remove.className = "link danger";
   remove.onclick = () => confirm(`Видалити ${server.hostname}?`) &&
-    run(() => request(`/api/servers/${server.id}`, { method: "DELETE" }), `${server.hostname} видалено`);
+    run(() => request(`/api/servers/${server.server_id}`, { method: "DELETE" }), `${server.hostname} видалено`);
 
   td.append(metric, remove);
   return td;
