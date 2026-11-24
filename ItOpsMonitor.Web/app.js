@@ -23,7 +23,9 @@ function cell(text) {
 async function checkHealth() {
   const badge = $("health");
   try {
-    const health = await request("/health");
+    // Простий GET без власних заголовків: браузер не робить preflight-запит.
+    // /health повертає JSON і при 503 (Unhealthy), тому статус читаємо з тіла.
+    const health = await (await fetch(API + "/health")).json();
     badge.textContent = `API: ${health.status}`;
     badge.className = "badge " + (health.status === "Healthy" ? "ok" : "bad");
   } catch (e) {
