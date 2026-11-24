@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+**/.vs/
+**/*.user
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/appsettings.Development.json
+.git/
+ItOpsMonitor.Client/
+ItOpsMonitor.Tests/
+ItOpsMonitor.Web/
+tools/

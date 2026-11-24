@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IT Ops Monitor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>IT Ops Monitor</h1>
+    <span id="health" class="badge">перевірка…</span>
+    <span id="api" class="muted"></span>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Новий сервер</h2>
+      <form id="create-form">
+        <input name="hostname" placeholder="hostname (web-prod-02)" required maxlength="100">
+        <input name="ip_address" placeholder="IP (10.0.1.12)" required>
+        <select name="environment">
+          <option>Production</option><option>Staging</option><option>Development</option>
+        </select>
+        <input name="cpu_alert_threshold" type="number" min="1" max="100" value="90">
+        <button type="submit">Додати</button>
+      </form>
+      <p id="message" class="muted"></p>
+    </section>
+
+    <section class="card">
+      <h2>Сервери <button id="reload" class="link">оновити</button></h2>
+      <table>
+        <thead>
+          <tr><th>Hostname</th><th>IP</th><th>Середовище</th><th>Поріг CPU</th>
+              <th>Стан</th><th>Остання метрика</th><th></th></tr>
+        </thead>
+        <tbody id="servers"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# --- додати до .gitignore (лабораторна №7) ---
+*.db
+*.db-shm
+*.db-wal
+publish/
+api.zip
+.env

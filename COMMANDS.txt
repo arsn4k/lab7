@@ -1,0 +1,9 @@
+dotnet new sln -n ItOpsMonitor
+dotnet sln add ItOpsMonitor.Domain ItOpsMonitor.Infrastructure ItOpsMonitor.API ItOpsMonitor.Tests
+dotnet tool install --global dotnet-ef --version "8.*"
+dotnet build
+
+dotnet ef migrations add InitialSchema --project ItOpsMonitor.Infrastructure --startup-project ItOpsMonitor.API --output-dir Migrations
+dotnet ef database update --project ItOpsMonitor.Infrastructure --startup-project ItOpsMonitor.API
+dotnet run --project ItOpsMonitor.API
+dotnet test

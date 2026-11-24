@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ItOpsMonitor.API/ItOpsMonitor.API.csproj" />
+  <Project Path="ItOpsMonitor.Domain/ItOpsMonitor.Domain.csproj" />
+  <Project Path="ItOpsMonitor.Infrastructure/ItOpsMonitor.Infrastructure.csproj" />
+  <Project Path="ItOpsMonitor.Tests/ItOpsMonitor.Tests.csproj" />
+</Solution>
